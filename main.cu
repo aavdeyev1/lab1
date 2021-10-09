@@ -16,7 +16,7 @@ __global__ void vec1(bignum *a, bignum *result, int n)
  
     // Make sure we do not go out of bounds
     if (id < n)
-        result[id] = a[id] + 1;
+        result[id] = a[id];
 }
 
 
