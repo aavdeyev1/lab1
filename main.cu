@@ -74,7 +74,7 @@ int main( int argc, char* argv[] )
     blockSize = (int) atoi(argv[3]);
  
     // Number of thread blocks in grid
-    gridSize = (int)ceil((float)(N)/blockSize);
+    gridSize = (int)ceil((double)((double)((n+1)/2)/blockSize));
  
     // Execute the kernel
     vec1<<<gridSize, blockSize>>>(d_input, d_output, N);
@@ -82,7 +82,7 @@ int main( int argc, char* argv[] )
     // Copy array back to host
     cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
-    printArray(h_output, N);
+   //  printArray(h_output, N);
     
     free(h_input);
     free(h_output);
