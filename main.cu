@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <sys/time.h>
+#include <time.h>
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
  
 typedef unsigned long long bignum;
 
