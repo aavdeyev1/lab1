@@ -45,7 +45,6 @@ int main( int argc, char* argv[] )
     bignum N = (bignum) atoi(argv[1]);
 
     size_t bytes = (N + 1) * sizeof(bignum);
-    printf("%zu\n%llu, %d\n", bytes, N, blockSize);
 
     bignum *h_input;
     bignum *h_output;
@@ -75,7 +74,7 @@ int main( int argc, char* argv[] )
     blockSize = (int) atoi(argv[3]);
  
     // Number of thread blocks in grid
-    gridSize = (int)ceil((float)n/blockSize);
+    gridSize = (int)ceil((float)(N+1)/blockSize);
  
     // Execute the kernel
     vec1<<<gridSize, blockSize>>>(d_input, d_input, N + 1);
