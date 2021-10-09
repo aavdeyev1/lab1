@@ -45,7 +45,7 @@ int main( int argc, char* argv[] )
     int blockSize = (int) atoi(argv[2]);
 
     size_t bytes = (N + 1) * sizeof(bignum);
-    printf("%d\n%llu, %d\n", bytes, N, blockSize);
+    printf("%zu\n%llu, %d\n", bytes, N, blockSize);
 
    //  bignum *h_input;
    //  bignum *h_output;
