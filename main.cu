@@ -74,7 +74,7 @@ int main( int argc, char* argv[] )
     blockSize = (int) atoi(argv[3]);
  
     // Number of thread blocks in grid
-    gridSize = (int)ceil((double)((double)((n+1)/2)/blockSize));
+    gridSize = (int)ceil((double)((double)((N+1)/2)/blockSize));
  
     // Execute the kernel
     vec1<<<gridSize, blockSize>>>(d_input, d_output, N);
