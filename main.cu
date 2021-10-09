@@ -52,11 +52,11 @@ int main( int argc, char* argv[] )
     h_input = (bignum *)malloc(bytes);
     h_output = (bignum *)malloc(bytes);
 
-   //  bignum *d_input;
-   //  bignum *d_output;
+    bignum *d_input;
+    bignum *d_output;
 
-   //  cudaMalloc(&d_input, bytes);
-   //  cudaMalloc(&d_output, bytes);
+    cudaMalloc(&d_input, bytes);
+    cudaMalloc(&d_output, bytes);
 
    //  int i;
    //  for (i=0; i < N + 1; i++){
@@ -86,8 +86,8 @@ int main( int argc, char* argv[] )
     
     free(h_input);
     free(h_output);
-   //  cudaFree(d_input);
-   //  cudaFree(d_output);
+    cudaFree(d_input);
+    cudaFree(d_output);
 
 
    //  cudaDeviceReset();
