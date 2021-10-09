@@ -7,7 +7,7 @@
 #include "device_launch_parameters.h"
  
 typedef unsigned long long bignum;
-__device__ int isPrimeGPU(bignum x)
+__device__ int isPrimeGPU(bignum x);
 
 // CUDA kernel. Each thread takes care of one element of c
 __global__ void primeGPU(bignum *a, bignum *result, int n)
