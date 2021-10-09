@@ -42,7 +42,7 @@ int main( int argc, char* argv[] )
         exit(-1);
     }
     // Retrieve N, blockSize from args
-    bignum N = (bignum) atoi(argv[1]);
+    bignum N = (bignum) atoi(argv[1]) + 1;
 
     size_t bytes = (N + 1) * sizeof(bignum);
 
@@ -90,7 +90,7 @@ int main( int argc, char* argv[] )
     cudaFree(d_output);
 
 
-   //  cudaDeviceReset();
+    cudaDeviceReset();
 
     return 0;
 }
