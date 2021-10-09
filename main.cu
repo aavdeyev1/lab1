@@ -7,17 +7,30 @@
 #include "device_launch_parameters.h"
  
 typedef unsigned long long bignum;
+__device__ int isPrimeGPU(bignum x)
 
 // CUDA kernel. Each thread takes care of one element of c
-__global__ void vec1(bignum *a, bignum *result, int n)
+__global__ void primeGPU(bignum *a, bignum *result, int n)
 {
     // Get our global thread ID
     int id = blockIdx.x*blockDim.x+threadIdx.x;
  
     // Make sure we do not go out of bounds
     if (id < n)
-        result[id] = a[id];
+        result[id] = isPrimeGPU(a[id]);
 }
+
+__device__ int isPrimeGPU(bignum x) {
+
+   bignum i;
+   for (i = 2; i * i < x + 1; i++) {
+       if (x % i == 0) {
+           return 0;
+       }
+   }
+   return 1;
+}
+
 
 
 void printArray(bignum * a, int len){
@@ -77,7 +90,7 @@ int main( int argc, char* argv[] )
     gridSize = (int)ceil((double)((double)((N)/2)/blockSize));
  
     // Execute the kernel
-    vec1<<<gridSize, blockSize>>>(d_input, d_output, N);
+   primeGPU<<<gridSize, blockSize>>>(d_input, d_output, N);
  
     // Copy array back to host
     cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
