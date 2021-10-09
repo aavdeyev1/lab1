@@ -22,7 +22,7 @@ __global__ void vec1(double *a, double *result, int n)
 void printArray(char a[], int len){
  
     int i;
-    printf("\n[");
+    printf("\n[`");
     for(i=0; i<len; i++){
     
        printf("%d, ", a[i]);
