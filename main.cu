@@ -63,10 +63,10 @@ int main( int argc, char* argv[] )
     
     free(h_input);
     free(h_output);
-    free(N);
+    free(argv);
 
 
-    cudaDeviceReset()
+    cudaDeviceReset();
 
     return 0;
 }
