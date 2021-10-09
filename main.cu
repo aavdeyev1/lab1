@@ -80,7 +80,7 @@ int main( int argc, char* argv[] )
    // //  vec1<<<gridSize, blockSize>>>(d_input, d_input, N + 1);
  
     // Copy array back to host
-    cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
+    cudaMemcpy( h_output, d_input, bytes, cudaMemcpyDeviceToHost );
 
     printArray(h_output, N);
     
