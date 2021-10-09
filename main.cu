@@ -58,13 +58,13 @@ int main( int argc, char* argv[] )
     cudaMalloc(&d_input, bytes);
     cudaMalloc(&d_output, bytes);
 
-   //  int i;
-   //  for (i=0; i < N + 1; i++){
-   //    h_input[i] = i;
-   //    h_output[i] = 0;    
-   //  }
-   //  printArray(h_input, N + 1);
-   //  printArray(h_output, N + 1);
+    int i;
+    for (i=0; i < N + 1; i++){
+      h_input[i] = i;
+      h_output[i] = 0;    
+    }
+    printArray(h_input, N);
+    printArray(h_output, N);
 
    //  cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
 
