@@ -42,9 +42,9 @@ int main( int argc, char* argv[] )
         exit(-1);
     }
     // Retrieve N, blockSize from args
-    bignum N = (bignum) atoi(argv[1]) + 1;
+    bignum N = (bignum) (atoi(argv[1]) + 1);
 
-    size_t bytes = (N + 1) * sizeof(bignum);
+    size_t bytes = (N) * sizeof(bignum);
 
     bignum *h_input;
     bignum *h_output;
@@ -82,7 +82,7 @@ int main( int argc, char* argv[] )
    //  // Copy array back to host
    //  cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
-    printArray(h_output, N + 1);
+    printArray(h_output, N);
     
     free(h_input);
     free(h_output);
@@ -90,7 +90,7 @@ int main( int argc, char* argv[] )
    //  cudaFree(d_output);
 
 
-    cudaDeviceReset();
+   //  cudaDeviceReset();
 
     return 0;
 }
