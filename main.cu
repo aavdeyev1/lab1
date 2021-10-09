@@ -68,16 +68,16 @@ int main( int argc, char* argv[] )
 
     cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
 
-   // //  int blockSize, gridSize;
+    int blockSize, gridSize;
  
-   // //  // Number of threads in each thread block
-   // //  blockSize = (int) atoi(argv[3]);
+    // Number of threads in each thread block
+    blockSize = (int) atoi(argv[3]);
  
-   // //  // Number of thread blocks in grid
-   // //  gridSize = (int)ceil((float)(N+1)/blockSize);
+    // Number of thread blocks in grid
+    gridSize = (int)ceil((float)(N)/blockSize);
  
-   // //  // Execute the kernel
-   // //  vec1<<<gridSize, blockSize>>>(d_input, d_input, N + 1);
+    // Execute the kernel
+    vec1<<<gridSize, blockSize>>>(d_input, d_input, N);
  
     // Copy array back to host
     cudaMemcpy( h_output, d_input, bytes, cudaMemcpyDeviceToHost );
