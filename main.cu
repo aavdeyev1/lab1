@@ -43,32 +43,55 @@ int main( int argc, char* argv[] )
     }
     // Retrieve N, blockSize from args
     bignum N = (bignum) atoi(argv[1]);
-    int blockSize = (int) atoi(argv[2]);
 
     size_t bytes = (N + 1) * sizeof(bignum);
     printf("%zu\n%llu, %d\n", bytes, N, blockSize);
 
-   //  bignum *h_input;
-   //  bignum *h_output;
+    bignum *h_input;
+    bignum *h_output;
 
-   //  h_input = (bignum *)malloc(bytes);
-   //  h_output = (bignum *)malloc(bytes);
+    h_input = (bignum *)malloc(bytes);
+    h_output = (bignum *)malloc(bytes);
 
-   //  int i;
-   //  for (i=0; i < N + 1; i++){
-   //    h_input[i] = i;
-   //    h_output[i] = 0;    
-   //  }
-   //  printArray(h_input, N + 1);
-   //  printArray(h_output, N + 1);
+    bignum *d_input;
+    bignum *d_output;
 
+    cudaMalloc(&d_input, bytes);
+    cudaMalloc(&d_output, bytes);
+
+    int i;
+    for (i=0; i < N + 1; i++){
+      h_input[i] = i;
+      h_output[i] = 0;    
+    }
+    printArray(h_input, N + 1);
+    printArray(h_output, N + 1);
+
+    cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
+
+    int blockSize, gridSize;
+ 
+    // Number of threads in each thread block
+    blockSize = (int) atoi(argv[3]);
+ 
+    // Number of thread blocks in grid
+    gridSize = (int)ceil((float)n/blockSize);
+ 
+    // Execute the kernel
+    vec1<<<gridSize, blockSize>>>(d_input, d_input, N + 1);
+ 
+    // Copy array back to host
+    cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
+
+    printArray(h_output, N + 1);
     
-   //  free(h_input);
-   //  free(h_output);
+    free(h_input);
+    free(h_output);
+    cudaFree(d_input);
+    cudaFree(d_output);
 
 
    //  cudaDeviceReset();
-   pthread_exit(NULL);
 
     return 0;
 }
