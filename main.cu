@@ -71,7 +71,7 @@ int main( int argc, char* argv[] )
     int blockSize, gridSize;
  
     // Number of threads in each thread block
-    blockSize = (int) atoi(argv[3]);
+    blockSize = (int) atoi(argv[2]);
  
     // Number of thread blocks in grid
     gridSize = 1024;
