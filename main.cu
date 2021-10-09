@@ -46,24 +46,23 @@ int main( int argc, char* argv[] )
 
     size_t bytes = (N + 1) * sizeof(bignum);
 
-    bignum *h_input;
-    bignum *h_output;
+   //  bignum *h_input;
+   //  bignum *h_output;
 
-    h_input = (bignum *)malloc(bytes);
-    h_output = (bignum *)malloc(bytes);
+   //  h_input = (bignum *)malloc(bytes);
+   //  h_output = (bignum *)malloc(bytes);
 
-    int i;
-    for (i=0; i < N + 1; i++){
-      h_input[i] = i;
-      h_output[i] = 0;    
-    }
-    printArray(h_input, N + 1);
-    printArray(h_output, N + 1);
+   //  int i;
+   //  for (i=0; i < N + 1; i++){
+   //    h_input[i] = i;
+   //    h_output[i] = 0;    
+   //  }
+   //  printArray(h_input, N + 1);
+   //  printArray(h_output, N + 1);
 
     
-    free(h_input);
-    free(h_output);
-    free(argv);
+   //  free(h_input);
+   //  free(h_output);
 
 
     cudaDeviceReset();
