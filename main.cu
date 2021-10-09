@@ -77,10 +77,10 @@ int main( int argc, char* argv[] )
     gridSize = (int)ceil((float)(N)/blockSize);
  
     // Execute the kernel
-    vec1<<<gridSize, blockSize>>>(d_input, d_input, N);
+    vec1<<<gridSize, blockSize>>>(d_input, d_output, N);
  
     // Copy array back to host
-    cudaMemcpy( h_output, d_input, bytes, cudaMemcpyDeviceToHost );
+    cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
     printArray(h_output, N);
     
