@@ -83,7 +83,7 @@ int main( int argc, char* argv[] )
     // Copy array back to host
     cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
-   //  printArray(h_output, N);
+    printArray(h_output, N);
     
     free(h_input);
     free(h_output);
