@@ -66,7 +66,7 @@ int main( int argc, char* argv[] )
     printArray(h_input, N);
     printArray(h_output, N);
 
-   //  cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
+    cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
 
    // //  int blockSize, gridSize;
  
@@ -79,8 +79,8 @@ int main( int argc, char* argv[] )
    // //  // Execute the kernel
    // //  vec1<<<gridSize, blockSize>>>(d_input, d_input, N + 1);
  
-   //  // Copy array back to host
-   //  cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
+    // Copy array back to host
+    cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
     printArray(h_output, N);
     
