@@ -67,6 +67,7 @@ int main( int argc, char* argv[] )
 
 
    //  cudaDeviceReset();
+   pthread_exit(NULL);
 
     return 0;
 }
