@@ -22,7 +22,7 @@ __global__ void vec1(bignum *a, bignum *result, int n)
 void printArray(bignum * a, int len){
  
     int i;
-    printf("\n[`");
+    printf("\n[");
     for(i=0; i<len; i++){
     
        printf("%llu, ", a[i]);
@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
     bignum N = (bignum) atoi(argv[1]);
     int blockSize = (int) atoi(argv[2]);
 
-    size_t bytes = N * sizeof(bignum);
+    size_t bytes = (N + 1) * sizeof(bignum);
 
     bignum *h_input;
     bignum *h_output;
@@ -53,18 +53,20 @@ int main( int argc, char* argv[] )
     h_output = (bignum *)malloc(bytes);
 
     int i;
-    for (i=0; i < N; i++){
+    for (i=0; i < N + 1; i++){
       h_input[i] = i;
       h_output[i] = 0;    
     }
-    printArray(h_input, N);
-    printArray(h_output, N);
+    printArray(h_input, N + 1);
+    printArray(h_output, N + 1);
 
     
     free(h_input);
     free(h_output);
+    free(N);
 
 
+    cudaDeviceReset()
 
     return 0;
 }
