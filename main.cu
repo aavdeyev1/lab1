@@ -57,7 +57,8 @@ int main( int argc, char* argv[] )
     // Retrieve N, blockSize from args
     bignum N = (bignum) (atoi(argv[1]) + 1);
 
-    size_t bytes = (bignum)((N) * sizeof(bignum));
+    int odds = (int)ceil((double)(N + 1)/2)
+    size_t bytes = (bignum)(odds * sizeof(bignum));
 
     bignum *h_input;
     bignum *h_output;
@@ -71,13 +72,15 @@ int main( int argc, char* argv[] )
     cudaMalloc(&d_input, bytes);
     cudaMalloc(&d_output, bytes);
 
+    int odds = ceil((double)(N + 1)/2)
+
     int i;
-    for (i=0; i < N + 1; i++){
+    for (i=3; i < N + 1; i + 2){
       h_input[i] = i;
       h_output[i] = 0;    
     }
-    printArray(h_input, N);
-    printArray(h_output, N);
+    printArray(h_input, odds;
+    printArray(h_output, odds);
 
     cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
 
@@ -90,12 +93,12 @@ int main( int argc, char* argv[] )
     gridSize = (int)ceil((double)((double)((N)/2)/blockSize));
  
     // Execute the kernel
-   primeGPU<<<gridSize, blockSize>>>(d_input, d_output, N);
+    primeGPU<<<gridSize, blockSize>>>(d_input, d_output, odds);
  
     // Copy array back to host
     cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
-    printArray(h_output, N);
+    printArray(h_output, odds);
     
     free(h_input);
     free(h_output);
