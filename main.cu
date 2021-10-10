@@ -75,7 +75,7 @@ int main( int argc, char* argv[] )
    //  int odds = ceil((double)(N + 1)/2)
 
     int i, s = 0;
-    for (i=0; i < N; i + 2){
+    for (i=0; i < N; i = i + 2){
       if (i % 2 != 0){
          h_input[s] = i;
          h_output[s] = i;    
