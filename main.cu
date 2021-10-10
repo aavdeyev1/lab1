@@ -75,11 +75,11 @@ int main( int argc, char* argv[] )
    //  int odds = ceil((double)(N + 1)/2)
 
     int i;
-    for (i=3; i < N + 1; i + 2){
+    for (i=3; i < N + 1; i = i + 2){
       h_input[i] = i;
       h_output[i] = 0;    
     }
-    printArray(h_input, odds;
+    printArray(h_input, odds);
     printArray(h_output, odds);
 
     cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
