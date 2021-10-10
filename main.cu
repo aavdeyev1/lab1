@@ -57,7 +57,7 @@ int main( int argc, char* argv[] )
     // Retrieve N, blockSize from args
     bignum N = (bignum) (atoi(argv[1]) + 1);
 
-    int odds = (int)ceil((double)(N + 1)/2)
+    int odds = (int)ceil((double)(N + 1)/2);
     size_t bytes = (bignum)(odds * sizeof(bignum));
 
     bignum *h_input;
@@ -72,7 +72,7 @@ int main( int argc, char* argv[] )
     cudaMalloc(&d_input, bytes);
     cudaMalloc(&d_output, bytes);
 
-    int odds = ceil((double)(N + 1)/2)
+   //  int odds = ceil((double)(N + 1)/2)
 
     int i;
     for (i=3; i < N + 1; i + 2){
