@@ -16,7 +16,7 @@ __global__ void primeGPU(bignum *a, bignum *result, int n)
     int id = blockIdx.x*blockDim.x+threadIdx.x;
  
     // Make sure we do not go out of bounds
-    if (id < n && id > 3 ) {
+    if (id < n && id > 2 ) {
       if (id % 2 != 0)
         result[id] = isPrimeGPU(a[id]);
     }
@@ -106,7 +106,7 @@ int main( int argc, char* argv[] )
     for (i=0; i < N; i++){
       total = total + h_output[i];
     }
-    printf("Number of primes in that range: %d", total);
+    printf("Number of primes in that range: %d\n", total);
     
     free(h_input);
     free(h_output);
