@@ -16,8 +16,10 @@ __global__ void primeGPU(bignum *a, bignum *result, int n)
     int id = blockIdx.x*blockDim.x+threadIdx.x;
  
     // Make sure we do not go out of bounds
-    if (id < n)
+    if (id < n && id > 3 ) {
+      if (id % 2 != 0)
         result[id] = isPrimeGPU(a[id]);
+    }
 }
 
 __device__ int isPrimeGPU(bignum x) {
