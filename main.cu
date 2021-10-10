@@ -57,8 +57,8 @@ int main( int argc, char* argv[] )
     // Retrieve N, blockSize from args
     bignum N = (bignum) (atoi(argv[1]) + 1);
 
-    int odds = (int)ceil((double)(N + 1)/2);
-    size_t bytes = (bignum)(odds * sizeof(bignum));
+   //  int odds = (int)ceil((double)(N + 1)/2);
+    size_t bytes = (bignum)(N * sizeof(bignum));
 
     bignum *h_input;
     bignum *h_output;
@@ -74,18 +74,13 @@ int main( int argc, char* argv[] )
 
    //  int odds = ceil((double)(N + 1)/2)
 
-    int i, s = 0;
-    for (i=0; i < N; i = i + 2){
-      if (i % 2 != 0){
-         h_input[s] = i;
-         h_output[s] = i;    
-      }
-      s++;
-      // h_input[i] = i;
-      // h_output[i] = 0;    
+    int i;
+    for (i=0; i < N; i++){
+      h_input[s] = i;
+      h_output[s] = i; 
     }
-    printArray(h_input, odds);
-    printArray(h_output, odds);
+    printArray(h_input, N);
+    printArray(h_output, N);
 
     cudaMemcpy( d_input, h_input, bytes, cudaMemcpyHostToDevice);
 
@@ -98,12 +93,18 @@ int main( int argc, char* argv[] )
     gridSize = (int)ceil((double)((double)((N)/2)/blockSize));
  
     // Execute the kernel
-    primeGPU<<<gridSize, blockSize>>>(d_input, d_output, odds);
+    primeGPU<<<gridSize, blockSize>>>(d_input, d_output, N);
  
     // Copy array back to host
     cudaMemcpy( h_output, d_output, bytes, cudaMemcpyDeviceToHost );
 
-    printArray(h_output, odds);
+    printArray(h_output, N);
+
+    int total = 0;
+    for (i=0; i < N; i++){
+      total = total + h_output[i];
+    }
+    printf("Number of primes in that range: %d", total);
     
     free(h_input);
     free(h_output);
