@@ -76,8 +76,8 @@ int main( int argc, char* argv[] )
 
     int i;
     for (i=0; i < N; i++){
-      h_input[s] = i;
-      h_output[s] = i; 
+      h_input[i] = i;
+      h_output[i] = i; 
     }
     printArray(h_input, N);
     printArray(h_output, N);
